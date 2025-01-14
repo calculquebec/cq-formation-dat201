@@ -63,8 +63,9 @@ def make_nodebook(src_path: str, new_path: str, lang: str, remove_tag: str):
         'nbformat_minor': src_dict['nbformat_minor'],
     }
 
-    with open(new_path, 'w') as ipynb:
-        json.dump(new_dict, ipynb, ensure_ascii=False)
+    with open(new_path, 'w', newline='\n') as ipynb:
+        json.dump(new_dict, ipynb, ensure_ascii=False, indent=1)
+        ipynb.write('\n')
 
     return len(new_cells)
 
