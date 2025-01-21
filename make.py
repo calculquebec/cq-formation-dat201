@@ -5,6 +5,7 @@ import os
 languages = ['en', 'fr']
 notebook_files = [
     '01-dataframe.ipynb',
+    '02-selection.ipynb',
 ]
 
 
