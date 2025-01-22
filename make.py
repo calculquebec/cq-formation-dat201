@@ -7,6 +7,7 @@ notebook_files = [
     '01-dataframe.ipynb',
     '02-selection.ipynb',
     '03-format.ipynb',
+    '04-combine.ipynb',
 ]
 
 
