@@ -8,6 +8,7 @@ notebook_files = [
     '02-selection.ipynb',
     '03-format.ipynb',
     '04-combine.ipynb',
+    '05-altair.ipynb',
 ]
 
 
