@@ -1,24 +1,43 @@
 # DAT201
 
-## Analyse de données et visualisation en Python
+## Titres d'atelier
 
-L'essentiel du matériel est sous la forme de
-*notebooks* IPython (fichiers `*.ipynb`).
+* (FR) **Analyse de données et visualisation en Python**
+* (EN) **Data Analysis and Visualization in Python**
 
-Les modules suivants sont requis via `pip install`:
+## Dépendances
+
+Python >= 3.11, `pip install ...`:
+
 * `numpy pandas matplotlib`
-* `altair selenium vega-datasets vl-convert-python`
+* `altair vega-datasets vl-convert-python`
 
-Et pour Altair, les modules suivants sont requis via `npm install`:
-* `vega-lite vega-cli canvas`
+## Fichiers sources
 
-## Data Analysis and Visualization in Python
+* Les fichiers à éditer sont dans `src/`.
 
-The material is in IPython *notebooks* (`*.ipynb` files).
+### Métadonnées des cellules
 
-Dependencies are the following Python modules:
-* `numpy pandas matplotlib`
-* `altair selenium vega-datasets vl-convert-python`
+Dans Jupyter Lab, à la droite d'un notebook, il y a un bouton
+de roues dentées pour faire afficher le "Property Inspector".
+C'est dans "ADVANCED TOOLS" qu'il faut éditer les métadonnées.
 
-For Altair, the following modules can be installed with `npm install`:
-* `vega-lite vega-cli canvas`
+* (Obligatoire) Langue(s) de la cellule (de code ou Markdown) :
+  * Anglais:  `"lang": "en"`
+  * Français: `"lang": "fr"`
+  * Les deux: `"lang": "en,fr"`
+* Différencier la version à remplir et le solutionnaire :
+  * Exercice : `"tags": ["exer"]`
+  * Solution : `"tags": ["soln"]`
+
+## Fichiers compilés
+
+Les fichiers compilés et à utiliser pendant un atelier sont dans :
+
+* `en` et `fr` pour les versions à remplir;
+* `solution-en` et `solution-fr` pour les solutionnaires.
+
+### Compilation
+
+* Compilation des dernières modifications : `python make.py`
+* Recompilation complète (rebuild) : `python make.py -r`
