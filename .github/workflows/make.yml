@@ -1,4 +1,4 @@
-name: Build exercise and solution notebooks
+name: Make exercise and solution notebooks
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
     - 'src/**'
 
 jobs:
-  make:
+  make_notebooks:
     runs-on: ubuntu-latest
     steps:
     # https://github.com/actions/checkout
@@ -21,7 +21,7 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Rebuild the final notebooks
+    - name: Rebuild all final notebooks
       run: |
         python make.py -r
 
