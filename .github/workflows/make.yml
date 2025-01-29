@@ -1,0 +1,24 @@
+name: Build exercise and solution notebooks
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  make:
+    runs-on: ubuntu-latest
+    steps:
+    # https://github.com/actions/checkout
+    - name: Git checkout latest revision
+      uses: actions/checkout@v4
+
+    # https://github.com/actions/setup-python
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Rebuild the final notebooks
+      run: |
+        python make.py -r
