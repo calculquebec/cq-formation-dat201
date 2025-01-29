@@ -4,6 +4,8 @@ on:
   push:
     branches:
     - main
+    paths:
+    - 'src/**'
 
 jobs:
   make:
@@ -28,5 +30,4 @@ jobs:
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git add en fr solution-{en,fr}
-        git commit -m "Exercise and solution notebooks rebuilt"
-        git push
+        ! git diff --cached --quiet && git commit -m "Exercise and solution notebooks rebuilt" && git push
