@@ -1,0 +1,3 @@
+record_id,month,day,year,plot_id,species_id,sex,hindfoot_length,weight
+22285,4,30,1995,9,RX,M,20.0,20.0
+25122,2,9,1997,5,RX,M,17.0,11.0
