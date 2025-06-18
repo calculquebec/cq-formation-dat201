@@ -1,23 +1,17 @@
 import argparse
+import glob
 import json
 import os
 
 languages = ['en', 'fr']
-notebook_files = [
-    '01-dataframe.ipynb',
-    '02-selection.ipynb',
-    '03-format.ipynb',
-    '04-combine.ipynb',
-    '05-altair.ipynb',
-]
 
 
-def make_nodebook(src_path: str, new_path: str, lang: str, remove_tag: str):
+def make_nodebook(src_file: str, new_file: str, lang: str, remove_tag: str):
     '''Update or rebuild a single notebook from the source notebook
 
     Arguments:
-    src_path -- relative path to the source notebook file
-    new_path -- relative path to the new notebook file
+    src_file -- relative path to the source notebook file
+    new_file -- relative path to the new notebook file
     lang -- language code, either "en" or "fr"
     remove_tag -- if this tag is found, remove the cell from the output
 
@@ -25,9 +19,9 @@ def make_nodebook(src_path: str, new_path: str, lang: str, remove_tag: str):
     The final number of cells in the saved file.
     '''
 
-    print(f'Building {new_path} ...')
+    print(f'Building {new_file} ...')
 
-    with open(src_path, 'r') as ipynb:
+    with open(src_file, 'r') as ipynb:
         src_dict = json.load(ipynb)
 
     new_cells = []
@@ -67,7 +61,7 @@ def make_nodebook(src_path: str, new_path: str, lang: str, remove_tag: str):
         'nbformat_minor': src_dict['nbformat_minor'],
     }
 
-    with open(new_path, 'w', newline='\n') as ipynb:
+    with open(new_file, 'w', newline='\n') as ipynb:
         json.dump(new_dict, ipynb, ensure_ascii=False, indent=1)
         ipynb.write('\n')
 
@@ -85,6 +79,9 @@ def make_nodebooks(src_file: str, lang: str, force_rebuild: bool = False):
     src_file -- notebook filename (*.ipynb) expected to be in src/
     lang -- language code, either "en" or "fr"
     force_rebuild -- if True, it overrides the modification time test
+
+    Return value:
+    The common number of cells in each of the saved files.
     '''
 
     versions = {
@@ -93,27 +90,26 @@ def make_nodebooks(src_file: str, lang: str, force_rebuild: bool = False):
     }
     nb_cells = {version: 0 for version in versions.keys()}
 
-    src_path = os.path.join('src', src_file)
-    src_mtime = os.path.getmtime(src_path)
-
     for version, attrib in versions.items():
         dir_name = f"{attrib['dir_prefix']}{lang}"
-        new_path = os.path.join(dir_name, src_file)
+        new_file = os.path.join(dir_name, os.path.basename(src_file))
 
-        if os.path.isfile(new_path):
-            new_mtime = os.path.getmtime(new_path)
+        if os.path.isfile(new_file):
+            new_mtime = os.path.getmtime(new_file)
         else:
             new_mtime = 0.0
 
-        if (new_mtime < src_mtime) or force_rebuild:
+        if (new_mtime < os.path.getmtime(src_file)) or force_rebuild:
             nb_cells[version] = make_nodebook(
-                src_path,
-                new_path,
+                src_file,
+                new_file,
                 lang,
                 attrib['remove_tag'])
 
     assert nb_cells['student'] == nb_cells['teacher'], \
         f'student and teacher versions have different number of cells ({lang})'
+
+    return nb_cells['teacher']
 
 
 def make_all_nodebooks():
@@ -135,9 +131,15 @@ def make_all_nodebooks():
 
     args = arg_parser.parse_args()
 
-    for src_file in notebook_files:
+    for src_file in glob.glob('src/*'):
+        nb_cells = []
+
         for lang in languages:
-            make_nodebooks(src_file, lang, args.rebuild)
+            cells_per_file = make_nodebooks(src_file, lang, args.rebuild)
+            nb_cells.append(cells_per_file)
+
+        assert all(nb_cells[0] == n for n in nb_cells[1:]), \
+            f'the number of cells is different between languages ({src_file})'
 
 
 if __name__ == '__main__':
