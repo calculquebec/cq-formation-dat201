@@ -1,0 +1,3 @@
+[submodule "translation"]
+	path = translation
+	url = https://github.com/calculquebec/make-translated-notebooks.git

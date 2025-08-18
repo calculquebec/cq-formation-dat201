@@ -14,6 +14,8 @@ jobs:
     # https://github.com/actions/checkout
     - name: Git checkout latest revision
       uses: actions/checkout@v4
+      with:
+        submodules: recursive
 
     # https://github.com/actions/setup-python
     - name: Set up Python 3.11
@@ -23,7 +25,7 @@ jobs:
 
     - name: Rebuild all final notebooks
       run: |
-        python make.py -r
+        python translation/make.py -r
 
     - name: Commit any change
       run: |

@@ -39,5 +39,6 @@ Les fichiers compilés et à utiliser pendant un atelier sont dans :
 
 ### Compilation
 
-* Compilation des dernières modifications : `python make.py`
-* Recompilation complète (rebuild) : `python make.py -r`
+* Cloner l'outil de compilation des traductions : `git submodule update --init`
+* Compilation des dernières modifications : `python translation/make.py`
+* Recompilation complète (rebuild) : `python translation/make.py -r`
