@@ -39,6 +39,11 @@ Les fichiers compilés et à utiliser pendant un atelier sont dans :
 
 ### Compilation
 
-* Cloner l'outil de compilation des traductions : `git submodule update --init`
+Pour cloner l'outil de compilation des traductions :
+
+`git submodule update --init`
+
+Ensuite :
+
 * Compilation des dernières modifications : `python translation/make.py`
 * Recompilation complète (rebuild) : `python translation/make.py -r`
