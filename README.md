@@ -12,25 +12,10 @@ Python >= 3.11, `pip install ...`:
 * `numpy pandas matplotlib`
 * `altair vega-datasets vl-convert-python`
 
-## Fichiers sources
+## À propos des notebooks
 
-* Les fichiers à éditer sont dans `src/`.
-
-### Métadonnées des cellules
-
-Dans Jupyter Lab, à la droite d'un notebook, il y a un bouton
-de roues dentées pour faire afficher le "Property Inspector".
-C'est dans "ADVANCED TOOLS" qu'il faut éditer les métadonnées.
-
-* (Obligatoire) Langue(s) de la cellule (de code ou Markdown) :
-  * Anglais:  `"lang": "en"`
-  * Français: `"lang": "fr"`
-  * Les deux: `"lang": "en,fr"`
-* Différencier la version à remplir et le solutionnaire :
-  * Exercice : `"tags": ["exer"]`
-  * Solution : `"tags": ["soln"]`
-
-## Fichiers compilés
+Le développement du matériel se fait dans le répertoire `src`.
+Voir [les instructions ici](https://github.com/calculquebec/make-translated-notebooks/blob/main/README.md#fichiers-sources).
 
 Les fichiers compilés et à utiliser pendant un atelier sont dans :
 
