@@ -2,8 +2,8 @@
 
 ## Titres d'atelier
 
-* (FR) **Analyse de données et visualisation en Python**
-* (EN) **Data Analysis and Visualization in Python**
+* (FR) **Analyse de données avec Python**
+* (EN) **Data Analysis with Python**
 
 ## Dépendances
 
