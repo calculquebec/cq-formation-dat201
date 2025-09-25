@@ -10,7 +10,6 @@
 Python >= 3.11, `pip install ...`:
 
 * `numpy pandas matplotlib`
-* `altair vega-datasets vl-convert-python`
 
 ## À propos des notebooks
 
